@@ -30,11 +30,11 @@ class A5_1(object):
 		else:
 			M = '0'
 		if X_reg[8] == M:
-			X_reg = self.shift(X_reg, 1)
+			X_reg = self.shift(X_reg, 'X')
 		if Y_reg[10] == M:
-			Y_reg = self.shift(Y_reg, 2)
+			Y_reg = self.shift(Y_reg, 'Y')
 		if Z_reg[10] == M:
-			Z_reg = self.shift(Z_reg, 3)
+			Z_reg = self.shift(Z_reg, 'Z')
 		#use option 1,2,3 to represent step X, Y, Z
 
 		key = str(int(X_reg[18])^int(Y_reg[21])^int(Z_reg[22]))
@@ -45,13 +45,13 @@ class A5_1(object):
 		print('Z: '+ Z_reg[22])		
 		print("There is the key: " + key)
 		'''
-		return key+X_reg+Y_reg+Z_reg
+		return key+X_reg+Y_reg+Z_reg 	#send back the package with first bit as key. 
 
 	def shift(self, stream, option):
 		t=''
-		if option == 1: #for x_reg
+		if option == 'X': #for x_reg
 			t = str(int(stream[13])^int(stream[16])^int(stream[17])^int(stream[18]))
-		elif option == 2: #for y_reg
+		elif option == 'Y': #for y_reg
 			t = str(int(stream[20])^int(stream[21]))
 		else:		# for z_reg
 			t = str(int(stream[7])^int(stream[20])^int(stream[21])^int(stream[22]))
