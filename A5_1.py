@@ -7,10 +7,23 @@ SAMPLEKEYBI = '0100101101100001010100000110010001010011011001110101011001101011'
 class A5_1(object):
 
 	def help(self):
-		print('print something')
+		print('USAGE: \n\t' + 'python ./A5_1.py help\n\t' + 'python ./A5_1.py generate KEYSTREAMLENGTH BITSKEY')
+		print('Note:\n\t'+ 'KEYSTREAMLENGTH is the length of keystream that will be generated\n\t' +
+			'BITSKEY has a default value of 0100101101100001010100000110010001010011011001110101011001101011\n\t'+
+			'BITSKEY can only be a sequence of 0s and 1s')
 
 
 	def generate(self, KeyStreamLen, Key = SAMPLEKEYBI):
+		p = set(str(Key))
+		if p=={'0', '1'} or p == {'0'} or p == {'1'}:
+			pass
+		else:
+			return 'Invalid Key'
+		if Key != SAMPLEKEYBI:
+			if len(str(Key))>64:
+				Key = str(Key)[0:63]
+			else:
+				Key = '0'*(64-len(str(Key)))+str(Key)
 		output = ''
 		X_reg = Key[0:19]
 		Y_reg = Key[19:41]
